@@ -15,6 +15,7 @@ front/node_modules/
 back/dist/
 front/dist/
 front/build/
+front/build/
 
 # Ignorar logs
 *.log
