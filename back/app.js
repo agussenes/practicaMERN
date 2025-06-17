@@ -8,6 +8,7 @@ const conectarDB = require('./config/db');
 
 // Rutas definidas
 const productosRoutes = require('./routes/productoRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Configurar variables de entorno (.env)
 dotenv.config();
@@ -22,6 +23,7 @@ app.use('/uploads', express.static('uploads'));
 
 // Rutas de las API
 app.use('/api/productos', productosRoutes);
+app.use('/auth', userRoutes)
 
 // Conexión a la base de datos MongoDB
 conectarDB();

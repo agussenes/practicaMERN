@@ -5,11 +5,13 @@ const { obtenerProductos, crearProducto, actualizarProducto, eliminarProducto } 
 // middlewares 
 const validarProducto = require('../middlewares/validarProducto');
 const upload = require('../middlewares/uploadImage');
+const validarRol = require('../middlewares/roleMddleware');
+const validarToken = require('../middlewares/authMiddleware');
 
 // routes 
 router.get('/', obtenerProductos);
-router.post('/', upload.single('imagen'), validarProducto, crearProducto);
-router.put('/:id', upload.single('imagen'), actualizarProducto);
-router.delete('/:id', eliminarProducto);
+router.post('/', validarToken, validarRol('admin'), upload.single('imagen'), validarProducto, crearProducto);
+router.put('/:id', validarToken, validarRol('admin'), upload.single('imagen'), actualizarProducto);
+router.delete('/:id', validarToken, validarRol('admin'), eliminarProducto);
 
 module.exports = router;
