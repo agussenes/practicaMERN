@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const {MONGO_URI} = process.env;
+const {MONGO_HOST, MONGO_PORT, MONGO_DB} = process.env;
 
-const URI = MONGO_URI;
+const URI = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
 
 const conectarDB = async()=>{
     try{
 
-        await mongoose.connect(URI, {useNewUrlParser: true, useUnifiedTopology: true});
+        await mongoose.connect(URI);
         console.log('Base de datos conectada');
 
     }catch(error){
